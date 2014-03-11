@@ -105,6 +105,6 @@
         android:longClickable="true"
         android:stackFromBottom="false"
         android:paddingTop="5pt"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="5pt" />
 
 </LinearLayout>

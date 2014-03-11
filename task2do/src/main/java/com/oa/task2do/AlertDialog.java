@@ -3,13 +3,14 @@ package com.oa.task2do;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 /**
  * Created by Avishay on 18/02/14.
  */
 public class AlertDialog extends DialogFragment {
-
+    int selection=0;
     boolean editMode =false;
 
     @Override
@@ -26,8 +27,14 @@ public class AlertDialog extends DialogFragment {
                 .setCancelable(false)
                 .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
-                        // if this button is clicked, close
-                        // current activity
+                        // Return input text to activity
+                        selection=1;
+                        Intent data = new Intent();
+                        //data.putExtra("timePicker", timePicker);
+                        data.putExtra("selection", selection);
+                        DialogListener activity = (DialogListener) getActivity();
+                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!ALERT CLASS WORKS YES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        activity.onFinishEditDialog(data);
                         editMode=true;
                     }
                 })
@@ -35,6 +42,8 @@ public class AlertDialog extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         // if this button is clicked, just close
                         // the dialog box and do nothing
+                        selection=0;
+                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!ALERT CLASS WORKS NO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                         editMode=false;
                         dialog.cancel();
                     }
@@ -48,6 +57,7 @@ public class AlertDialog extends DialogFragment {
         //return choice;
         return alertDialog;
     }
+
 
 
 }
